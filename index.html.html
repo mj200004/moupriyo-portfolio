@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moupriyo Jana — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #2a2a3a;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e8e8f0;
+    --muted: #6b6b85;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh; display: flex;
+    align-items: center; padding: 8rem 3rem 4rem; z-index: 1;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-tag {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
+  h1 {
+    font-family: var(--sans); font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+  }
+  .name-line { display: block; }
+  .name-accent { color: var(--accent); }
+  .hero-desc {
+    font-family: var(--mono); font-size: 0.9rem; color: var(--muted);
+    max-width: 500px; line-height: 1.8; margin-bottom: 3rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.85rem 2rem; border: 1px solid;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+  .btn-secondary { background: transparent; border-color: var(--border); color: var(--muted); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .stat { text-align: right; }
+  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; padding: 6rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+    letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.1;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 2rem; transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .skill-card-title {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-family: var(--mono); font-size: 0.65rem; padding: 0.25rem 0.6rem;
+    background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.15);
+    color: var(--text); letter-spacing: 0.05em;
+  }
+
+  /* EDUCATION */
+  .edu-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+  .edu-card {
+    border: 1px solid var(--border); background: var(--card);
+    padding: 1.8rem 2rem; display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 1.5rem; flex-wrap: wrap;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: rgba(0,229,255,0.3); }
+  .edu-level {
+    font-family: var(--mono); font-size: 0.63rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem;
+  }
+  .edu-degree { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .edu-school { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  .edu-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
+  .edu-cgpa {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.2);
+    padding: 0.35rem 0.9rem; white-space: nowrap;
+  }
+  .edu-year { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.35rem; top: 0.4rem;
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .timeline-date { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .timeline-role { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .timeline-company { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .timeline-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .timeline-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+
+  /* PROJECTS — 1 per row */
+  #projects { background: var(--surface); }
+  .projects-list { display: flex; flex-direction: column; gap: 1.8rem; }
+
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 2rem 2.5rem; position: relative; overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    grid-template-rows: auto auto auto;
+    column-gap: 2rem; row-gap: 0;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    transform: scaleY(0); transform-origin: top; transition: transform 0.3s;
+  }
+  .project-card:hover::before { transform: scaleY(1); }
+  .project-card:hover { border-color: rgba(0,229,255,0.3); transform: translateX(5px); }
+
+  .project-header {
+    grid-column: 1; grid-row: 1;
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 0.55rem;
+  }
+  .project-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; flex-shrink: 0; }
+  .project-title-link {
+    font-size: 1.15rem; font-weight: 700; color: var(--text);
+    text-decoration: none; line-height: 1.3; transition: color 0.2s;
+  }
+  .project-title-link:hover { color: var(--accent); }
+  .project-title-link::after { content: ' ↗'; font-size: 0.8rem; opacity: 0.45; }
+
+  .project-stack {
+    grid-column: 1; grid-row: 2;
+    font-family: var(--mono); font-size: 0.67rem; color: var(--accent2);
+    letter-spacing: 0.06em; margin-bottom: 1rem;
+  }
+  .project-desc {
+    grid-column: 1; grid-row: 3;
+    font-size: 0.87rem; color: var(--muted); line-height: 1.8;
+  }
+
+  .project-meta {
+    grid-column: 2; grid-row: 1 / 4;
+    display: flex; flex-direction: column; align-items: flex-end;
+    justify-content: center; gap: 1rem;
+  }
+  .project-badge {
+    font-family: var(--mono); font-size: 0.6rem;
+    padding: 0.28rem 0.7rem; background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3); color: var(--accent3);
+    letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; text-align: center;
+  }
+  .project-github-btn {
+    font-family: var(--mono); font-size: 0.68rem; color: var(--muted);
+    text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border);
+    letter-spacing: 0.07em; transition: all 0.2s; white-space: nowrap;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .project-github-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ACHIEVEMENTS */
+  .achievements-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .achievement-item {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.5rem; border: 1px solid var(--border); background: var(--card); transition: border-color 0.2s;
+  }
+  .achievement-item:hover { border-color: var(--accent3); }
+  .achievement-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .achievement-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  /* CONTACT */
+  #contact { background: var(--surface); text-align: center; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+  .contact-link {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+    text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--border);
+    letter-spacing: 0.08em; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    position: relative; z-index: 1; text-align: center; padding: 2rem 3rem;
+    border-top: 1px solid var(--border); font-family: var(--mono);
+    font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .cursor::after { content: '|'; color: var(--accent); animation: blink 1s infinite; margin-left: 2px; }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MJ.dev</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag fade-up">AI / ML Engineer</div>
+    <h1>
+      <span class="name-line fade-up delay-1">MOUPRIYO</span>
+      <span class="name-line name-accent fade-up delay-2 cursor">JANA</span>
+    </h1>
+    <p class="hero-desc fade-up delay-3">
+      Computer Vision · Deep Learning · Generative AI<br>
+      Research Intern @ IIT Kharagpur · AI Data Annotation Intern @ Utah Tech Labs<br>
+      Based in Medinipore, West Bengal
+    </p>
+    <div class="hero-ctas fade-up delay-4">
+      <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
+      <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">96%</div>
+      <div class="stat-label">Model Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Internships</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7.83</div>
+      <div class="stat-label">CGPA / 10</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">// 01 — technical skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🧠</div>
+        <div class="skill-card-title">AI/ML Frameworks</div>
+        <div class="skill-tags">
+          <span class="tag">TensorFlow</span><span class="tag">Keras</span>
+          <span class="tag">PyTorch</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Hugging Face</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">✨</div>
+        <div class="skill-card-title">Generative AI / LLMs</div>
+        <div class="skill-tags">
+          <span class="tag">Transformers</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">AWS Bedrock</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">👁️</div>
+        <div class="skill-card-title">Computer Vision & Imaging</div>
+        <div class="skill-tags">
+          <span class="tag">Medical Image Segmentation</span>
+          <span class="tag">InceptionV3</span><span class="tag">ResNet50</span>
+          <span class="tag">Transfer Learning</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">MLOps & Cloud</div>
+        <div class="skill-tags">
+          <span class="tag">Docker</span><span class="tag">Railway</span>
+          <span class="tag">Streamlit</span><span class="tag">FastAPI</span>
+          <span class="tag">AWS Lambda</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span>
+          <span class="tag">Java</span><span class="tag">MATLAB</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔬</div>
+        <div class="skill-card-title">Domains</div>
+        <div class="skill-tags">
+          <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
+          <span class="tag">NLP</span><span class="tag">Computer Vision</span>
+          <span class="tag">Data Annotation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">// 02 — education</div>
+    <h2 class="section-title">Academic Background</h2>
+    <div class="edu-stack">
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-level">Undergraduate</div>
+          <div class="edu-degree">B.Tech in Computer Science & Engineering</div>
+          <div class="edu-school">Government College of Engineering & Textile Technology, Berhampore</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-cgpa">CGPA: 7.83 / 10</div>
+          <div class="edu-year">Sept 2022 – July 2026</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-level">Higher Secondary (Class XII)</div>
+          <div class="edu-degree">Science Stream</div>
+          <div class="edu-school">Keranitola Shree Shree Mohonananda Vidyamandir</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-cgpa">80.02%</div>
+          <div class="edu-year">2021 – 2022</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-level">Secondary (Class X)</div>
+          <div class="edu-degree">General Studies</div>
+          <div class="edu-school">Nayagram High School</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-cgpa">88.28%</div>
+          <div class="edu-year">2019 – 2020</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">// 03 — experience</div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">JAN 2026 – MAY 2026</div>
+        <div class="timeline-role">Research Intern</div>
+        <div class="timeline-company">School of Medical Science & Technology (SMST), IIT Kharagpur</div>
+        <ul class="timeline-bullets">
+          <li>Worked on Medical Image Analysis using Artificial Intelligence, Machine Learning, and Deep Learning models.</li>
+          <li>Focused on Computer Vision, model optimization, and performance evaluation for healthcare imaging applications.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">FEB 2026 – PRESENT</div>
+        <div class="timeline-role">AI Data Annotation Intern</div>
+        <div class="timeline-company">Utah Tech Labs — Remote</div>
+        <ul class="timeline-bullets">
+          <li>Annotating and labelling data (text, image, audio, and video) as per project guidelines.</li>
+          <li>Ensuring accuracy and quality of annotated datasets.</li>
+          <li>Reviewing and validating annotated data.</li>
+          <li>Maintaining confidentiality of data and project information.</li>
+          <li>Meeting productivity and quality benchmarks.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">JAN 2026 – APR 2026</div>
+        <div class="timeline-role">Artificial Intelligence Intern</div>
+        <div class="timeline-company">Infosys Springboard Virtual Internship Platform</div>
+        <ul class="timeline-bullets">
+          <li>Built and deployed a full-stack AI-powered Business Analyzer (Streamlit + Docker + Railway).</li>
+          <li>Implemented JWT authentication, CSV-based P&L generation, and automated cash flow alerts.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">// 04 — projects</div>
+    <h2 class="section-title">Things I've Built</h2>
+    <div class="projects-list">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">PROJECT_01</span>
+          <a href="https://github.com/mj200004/StateStack-AIforBharat" target="_blank" class="project-title-link">StateStack — AI Learning Assistant for Bharat</a>
+        </div>
+        <div class="project-stack">JavaScript &nbsp;·&nbsp; AWS Bedrock (Amazon Nova Micro) &nbsp;·&nbsp; AWS Lambda &nbsp;·&nbsp; Amazon API Gateway &nbsp;·&nbsp; Amazon DynamoDB &nbsp;·&nbsp; AWS Amplify</div>
+        <div class="project-desc">
+          An intelligent, serverless learning platform built for the <strong style="color:var(--text);">AI for Bharat AWS Hackathon 2026</strong>, developed as Team Lead. The platform helps beginner developers learn programming through an interactive AI chat assistant, a smart code debugger that explains errors and provides working fixes, structured learning paths with progress tracking, and hands-free voice input. The backend is fully serverless — deployed on AWS Lambda and exposed via API Gateway, with DynamoDB handling data persistence and AWS Amplify hosting the frontend.
+          <br><br>
+          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://di21r9s7dmq4q.cloudfront.net" target="_blank" style="color:var(--accent);text-decoration:none;">di21r9s7dmq4q.cloudfront.net ↗</a></span>
+        </div>
+        <div class="project-meta">
+          <div class="project-badge">🏆 Team Lead · Hackathon</div>
+          <a href="https://github.com/mj200004/StateStack-AIforBharat" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">PROJECT_02</span>
+          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-title-link">AQI Prediction using RFM & Clustering</a>
+        </div>
+        <div class="project-stack">Python &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Scikit-learn &nbsp;·&nbsp; Matplotlib &nbsp;·&nbsp; K-Means &nbsp;·&nbsp; kneed &nbsp;·&nbsp; Jupyter</div>
+        <div class="project-desc">
+          An Air Quality Index (AQI) prediction and segmentation system built on Pune air quality data (SO₂, NOx, RSPM, SPM) sourced from the Maharashtra Pollution Control Board (MPCB). The pipeline applies RFM (Recency, Frequency, Monetary) feature engineering per location, uses the Elbow Method with KneeLocator to determine the optimal cluster count, and trains a K-Means model for unsupervised AQI segmentation across 6,219 samples. Clusters are validated against median AQI-based ground truth labels. The codebase is fully modular with dedicated scripts for preprocessing, RFM analysis, clustering, visualization, and configuration.
+        </div>
+        <div class="project-meta">
+          <div class="project-badge">6,219 Samples</div>
+          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">PROJECT_03</span>
+          <a href="https://github.com/mj200004/Image-Classification" target="_blank" class="project-title-link">Urban Street Flower Classification</a>
+        </div>
+        <div class="project-stack">Python &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; Keras &nbsp;·&nbsp; InceptionV3 &nbsp;·&nbsp; ResNet50 &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Matplotlib</div>
+        <div class="project-desc">
+          A deep learning model for classifying 17 species of urban street flowers and trees, fine-tuned from a pretrained InceptionV3 network (ImageNet weights) on the Kaggle Urban Street Classification dataset — 1,828 training, 228 validation, and 219 test images. Layers 0–248 are frozen while layers 249 onwards are fine-tuned. A custom head (GlobalAveragePooling2D → Dense 4096 ReLU → BatchNormalization → Dense 17 Softmax) is appended. Training uses the Adam optimizer with categorical cross-entropy loss, ReduceLROnPlateau scheduling (factor=√0.1, patience=5), and full data augmentation (rotation, shift, shear, zoom, flip). Achieved a <strong style="color:var(--accent);">final validation accuracy of 96.05%</strong>, with a peak of 98.25% at epoch 22 across 50 epochs.
+        </div>
+        <div class="project-meta">
+          <div class="project-badge">96% Accuracy</div>
+          <a href="https://github.com/mj200004/Image-Classification" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">PROJECT_04</span>
+          <a href="https://github.com/mj200004/Business-Analyzer" target="_blank" class="project-title-link">Business Analyzer — Sales & Profit Management System</a>
+        </div>
+        <div class="project-stack">Python &nbsp;·&nbsp; Streamlit &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Railway &nbsp;·&nbsp; SQLite &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; Plotly &nbsp;·&nbsp; Facebook Prophet &nbsp;·&nbsp; JWT &nbsp;·&nbsp; bcrypt &nbsp;·&nbsp; FPDF2 &nbsp;·&nbsp; OpenPyXL</div>
+        <div class="project-desc">
+          A comprehensive, full-stack web-based business management system built during the Infosys Springboard internship. Features secure JWT authentication with bcrypt password hashing, role-based access control (Owner, Accountant, Staff), and multi-business profile management. Supports complete transaction logging, real-time profit metric calculation (Gross Profit, Net Profit, Margins), inventory management with SKU tracking, low-stock alerts, and COGS analysis. Advanced analytics are powered by Facebook Prophet for multi-frequency forecasting (daily, weekly, monthly) with confidence interval predictions, and a linear regression fallback. Generates downloadable PDF and Excel reports, supports bulk CSV import, and includes an admin dashboard for system health and user monitoring. Deployed as a Docker container on Railway for cloud-ready production use.
+        </div>
+        <div class="project-meta">
+          <div class="project-badge">Full-Stack · Deployed</div>
+          <a href="https://github.com/mj200004/Business-Analyzer" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-label">// 05 — achievements</div>
+    <h2 class="section-title">Key Highlights</h2>
+    <div class="achievements-list">
+      <div class="achievement-item">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-text">Led Team StateStack at the AI for Bharat AWS Hackathon 2026 — architected a fully serverless AWS backend (Bedrock + Lambda + DynamoDB + Amplify) from concept to working, deployed prototype.</div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-icon">📋</div>
+        <div class="achievement-text">Qualified in TCS National Qualifier Test (NQT) 2026 — National Level Assessment for Ninja Hiring Role.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">// 06 — contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted); max-width: 480px; margin: 0 auto;">
+      Open to research collaborations, AI/ML roles, and conversations around deep learning and computer vision.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:janamoupriyo@gmail.com" class="contact-link">✉ janamoupriyo@gmail.com</a>
+      <a href="https://github.com/mj200004" target="_blank" class="contact-link">⌥ github.com/mj200004</a>
+      <a href="tel:+917865998135" class="contact-link">☏ +91 7865998135</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Moupriyo Jana &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; Medinipore, West Bengal
+</footer>
+
+</body>
+</html>
