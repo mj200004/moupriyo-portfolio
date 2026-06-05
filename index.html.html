@@ -182,7 +182,7 @@
   .timeline-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; }
   .timeline-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent2); font-weight: 700; }
 
-  /* PROJECTS — 1 per row */
+  /* PROJECTS */
   #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .projects-list { display: flex; flex-direction: column; gap: 1.8rem; }
 
@@ -311,7 +311,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#" onclick="openResume();return false;" style="color:var(--accent3)!important; font-weight: 700;">↗ Resume</a></li>
+    <li><a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" style="color:var(--accent3)!important; font-weight: 700;">↗ Resume</a></li>
   </ul>
 </nav>
 
@@ -331,7 +331,7 @@
     <div class="hero-ctas fade-up delay-4">
       <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
       <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
-      <a href="#" onclick="openResume();return false;" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
+      <a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -405,6 +405,9 @@
         <div class="skill-tags">
           <span class="tag">Transformers</span>
           <span class="tag">Prompt Engineering</span>
+          <span class="tag">Gemini API</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">RAG Frameworks</span>
           <span class="tag">AWS Bedrock</span>
         </div>
       </div>
@@ -422,6 +425,7 @@
         <div class="skill-card-title">MLOps & Cloud</div>
         <div class="skill-tags">
           <span class="tag">Docker</span><span class="tag">Railway</span>
+          <span class="tag">Render</span><span class="tag">Flask</span>
           <span class="tag">Streamlit</span><span class="tag">FastAPI</span>
           <span class="tag">AWS Lambda</span>
         </div>
@@ -441,7 +445,7 @@
         <div class="skill-tags">
           <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
           <span class="tag">NLP</span><span class="tag">Computer Vision</span>
-          <span class="tag">Data Annotation</span>
+          <span class="tag">Web Scraping</span>
         </div>
       </div>
     </div>
@@ -546,49 +550,67 @@
     <h2 class="section-title">Things I've Built</h2>
     <div class="projects-list">
 
-      <!-- Project 1 -->
+      <!-- Project 1: CompanyLens -->
       <div class="project-card">
         <div class="project-header">
           <span class="project-num">PROJECT_01</span>
-          <a href="https://github.com/mj200004/StateStack-AIforBharat" target="_blank" class="project-title-link">StateStack — AI Learning Assistant for Bharat</a>
+          <a href="https://companylens-ai-company-enrichment-tool-1.onrender.com/" target="_blank" class="project-title-link">CompanyLens — AI-Powered Company Enrichment Platform</a>
         </div>
-        <div class="project-stack">JavaScript &nbsp;·&nbsp; AWS Bedrock (Amazon Nova Micro) &nbsp;·&nbsp; AWS Lambda &nbsp;·&nbsp; Amazon API Gateway &nbsp;·&nbsp; Amazon DynamoDB &nbsp;·&nbsp; AWS Amplify</div>
+        <div class="project-stack">Python &nbsp;·&nbsp; Gemini API &nbsp;·&nbsp; LangChain &nbsp;·&nbsp; RAG Frameworks &nbsp;·&nbsp; Flask &nbsp;·&nbsp; HTML/CSS</div>
         <div class="project-desc">
-          An intelligent, serverless learning platform built for the <strong style="color:var(--text);">AI for Bharat AWS Hackathon 2026</strong>, developed as Team Lead. The platform helps beginner developers learn programming through an interactive AI chat assistant, a smart code debugger that explains errors and provides working fixes, structured learning paths with progress tracking, and hands-free voice input. The backend is fully serverless — deployed on AWS Lambda and exposed via API Gateway, with DynamoDB handling data persistence and AWS Amplify hosting the frontend.
+          An advanced AI business intelligence tool engineered for the <strong style="color:var(--text);">Relu Consultancy Services Hackathon (Unstop)</strong>. CompanyLens automates deep intelligence gathering by running a live web scraping pipeline to extract company offerings, target audience niches, contact info, and customer insights. It routes this data through LangChain and Retrieval-Augmented Generation (RAG) to dynamically generate rich structural profiles and auto-compose highly targeted, personalized B2B outreach messaging suggestions. Fully optimized and live on Render.
           <br><br>
-          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://di21r9s7dmq4q.cloudfront.net" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">di21r9s7dmq4q.cloudfront.net ↗</a></span>
+          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://companylens-ai-company-enrichment-tool-1.onrender.com/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">companylens-ai-company-enrichment-tool-1.onrender.com ↗</a></span>
         </div>
         <div class="project-meta">
-          <div class="project-badge">🏆 Team Lead · Hackathon</div>
-          <a href="https://github.com/mj200004/StateStack-AIforBharat" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+          <div class="project-badge">🚀 Hackathon Project</div>
+          <a href="https://github.com/mj200004/CompanyLens-AI-Company-Enrichment-Tool" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- Project 2: StateStack -->
       <div class="project-card">
         <div class="project-header">
           <span class="project-num">PROJECT_02</span>
-          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-title-link">AQI Prediction using RFM & Clustering</a>
+          <a href="https://di21r9s7dmq4q.cloudfront.net/" target="_blank" class="project-title-link">StateStack — AI Learning Assistant for Bharat</a>
         </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Scikit-learn &nbsp;·&nbsp; Matplotlib &nbsp;·&nbsp; K-Means &nbsp;·&nbsp; kneed &nbsp;·&nbsp; Jupyter</div>
+        <div class="project-stack">JavaScript &nbsp;·&nbsp; AWS Bedrock &nbsp;·&nbsp; AWS Lambda &nbsp;·&nbsp; React &nbsp;·&nbsp; Node.js</div>
         <div class="project-desc">
-          An Air Quality Index (AQI) prediction and segmentation system built on Pune air quality data (SO₂, NOx, RSPM, SPM) sourced from the Maharashtra Pollution Control Board (MPCB). The pipeline applies RFM (Recency, Frequency, Monetary) feature engineering per location, uses the Elbow Method with KneeLocator to determine the optimal cluster count, and trains a K-Means model for unsupervised AQI segmentation across 6,219 samples. Clusters are validated against median AQI-based ground truth labels. The codebase is fully modular with dedicated scripts for preprocessing, RFM analysis, clustering, visualization, and configuration.
+          An intelligent learning platform designed to help students learn programming interactively. Built an AI-powered Code Debugger that detects syntax or logical errors and suggests immediate fixes alongside comprehensive contextual explanations. Created personalized learning paths integrated with custom progress tracking, interactive milestone lessons, and an advanced voice-enabled AI chat assistant built cleanly over cloud backbones.
+          <br><br>
+          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://di21r9s7dmq4q.cloudfront.net/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">di21r9s7dmq4q.cloudfront.net ↗</a></span>
         </div>
         <div class="project-meta">
-          <div class="project-badge">6,219 Samples</div>
+          <div class="project-badge">🏆 Team Lead</div>
+          <a href="#" class="project-github-btn">⌥ GitHub Link</a>
+        </div>
+      </div>
+
+      <!-- Project 3: AQI Prediction -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">PROJECT_03</span>
+          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-title-link">AQI Prediction using RFM & Clustering</a>
+        </div>
+        <div class="project-stack">Python &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Scikit-learn &nbsp;·&nbsp; Matplotlib &nbsp;·&nbsp; K-Means</div>
+        <div class="project-desc">
+          An Air Quality Index (AQI) prediction and analysis system leveraging Python, standard Machine Learning structures, and unsupervised K-Means Clustering algorithms. Performed robust data preprocessing and tailored RFM-based feature engineering workflows to systematically isolate structural patterns. Applied unsupervised learning models to partition the raw metrics, evaluate variance, and cleanly identify hidden pollution trends.
+        </div>
+        <div class="project-meta">
+          <div class="project-badge">ML Analysis</div>
           <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Project 4: Image Classification -->
       <div class="project-card">
         <div class="project-header">
-          <span class="project-num">PROJECT_03</span>
+          <span class="project-num">PROJECT_04</span>
           <a href="https://github.com/mj200004/Image-Classification" target="_blank" class="project-title-link">Urban Street Flower Classification</a>
         </div>
         <div class="project-stack">Python &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; Keras &nbsp;·&nbsp; InceptionV3 &nbsp;·&nbsp; ResNet50 &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Matplotlib</div>
         <div class="project-desc">
-          A deep learning model for classifying 17 species of urban street flowers and trees, fine-tuned from a pretrained InceptionV3 network (ImageNet weights) on the Kaggle Urban Street Classification dataset — 1,828 training, 228 validation, and 219 test images. Layers 0–248 are frozen while layers 249 onwards are fine-tuned. A custom head (GlobalAveragePooling2D → Dense 4096 ReLU → BatchNormalization → Dense 17 Softmax) is appended. Training uses the Adam optimizer with categorical cross-entropy loss, ReduceLROnPlateau scheduling (factor=√0.1, patience=5), and full data augmentation (rotation, shift, shear, zoom, flip). Achieved a <strong style="color:var(--text);">final validation accuracy of 96.05%</strong>, with a peak of 98.25% at epoch 22 across 50 epochs.
+          A deep learning model for classifying 17 species of urban street flowers and trees, fine-tuned from a pretrained InceptionV3 network on the Kaggle Urban Street Classification dataset. Employs fine-tuning on deep feature layers layered with a custom head block (GlobalAveragePooling2D → Dense 4096 ReLU → BatchNormalization → Dense 17 Softmax) with dynamic learning-rate step downs. Achieved a <strong style="color:var(--text);">final validation accuracy of 96.05%</strong>.
         </div>
         <div class="project-meta">
           <div class="project-badge">96% Accuracy</div>
@@ -596,15 +618,17 @@
         </div>
       </div>
 
-      <!-- Project 4 -->
+      <!-- Project 5: Business Analyzer -->
       <div class="project-card">
         <div class="project-header">
-          <span class="project-num">PROJECT_04</span>
-          <a href="https://github.com/mj200004/Business-Analyzer" target="_blank" class="project-title-link">Business Analyzer — Sales & Profit Management System</a>
+          <span class="project-num">PROJECT_05</span>
+          <a href="https://a-small-business-sales-profit-analyzer-cs6yrazrf8plm7ycsiee42.streamlit.app/" target="_blank" class="project-title-link">Business Analyzer — Sales & Profit Management System</a>
         </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; Streamlit &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Railway &nbsp;·&nbsp; SQLite &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; Plotly &nbsp;·&nbsp; Facebook Prophet &nbsp;·&nbsp; JWT &nbsp;·&nbsp; bcrypt &nbsp;·&nbsp; FPDF2 &nbsp;·&nbsp; OpenPyXL</div>
+        <div class="project-stack">Python &nbsp;·&nbsp; Streamlit &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Railway &nbsp;·&nbsp; SQLite &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; Plotly &nbsp;·&nbsp; Facebook Prophet &nbsp;·&nbsp; JWT &nbsp;·&nbsp; bcrypt</div>
         <div class="project-desc">
-          A comprehensive, full-stack web-based business management system built during the Infosys Springboard internship. Features secure JWT authentication with bcrypt password hashing, role-based access control (Owner, Accountant, Staff), and multi-business profile management. Supports complete transaction logging, real-time profit metric calculation (Gross Profit, Net Profit, Margins), inventory management with SKU tracking, low-stock alerts, and COGS analysis. Advanced analytics are powered by Facebook Prophet for multi-frequency forecasting (daily, weekly, monthly) with confidence interval predictions, and a linear regression fallback. Generates downloadable PDF and Excel reports, supports bulk CSV import, and includes an admin dashboard for system health and user monitoring. Deployed as a Docker container on Railway for cloud-ready production use.
+          A full-stack enterprise profiling dashboard engineered during an Infosys Springboard internship. Integrates robust underlying structures like SQLite, custom JWT tokens, role management matrices, transaction logging engines, low-stock notifications, and advanced product line scaling capabilities. Time series forecast calculations utilize Facebook Prophet models to trace future cash flows. Ported and fully isolated inside Docker environments for production hosting.
+          <br><br>
+          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://a-small-business-sales-profit-analyzer-cs6yrazrf8plm7ycsiee42.streamlit.app/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">streamlit.app ↗</a></span>
         </div>
         <div class="project-meta">
           <div class="project-badge">Full-Stack · Deployed</div>
@@ -622,6 +646,10 @@
     <div class="section-label">// 05 — achievements</div>
     <h2 class="section-title">Key Highlights</h2>
     <div class="achievements-list">
+      <div class="achievement-item">
+        <div class="achievement-icon">🚀</div>
+        <div class="achievement-text">Qualified Project Builder at the Relu Consultancy Services Hackathon (hosted on Unstop) — conceptualized and shipped CompanyLens under aggressive timelines.</div>
+      </div>
       <div class="achievement-item">
         <div class="achievement-icon">🏆</div>
         <div class="achievement-text">Led Team StateStack at the AI for Bharat AWS Hackathon 2026 — architected a fully serverless AWS backend (Bedrock + Lambda + DynamoDB + Amplify) from concept to working, deployed prototype.</div>
@@ -654,33 +682,5 @@
   © 2026 Moupriyo Jana &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; Medinipore, West Bengal
 </footer>
 
-<script>
-// Your base64 script string stays here completely unmodified...
-var RESUME_B64 = "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幕後M...
-  console.log("Resume loaded successfully.");
-}
-function openResume(){
-  var blob=b64ToBlob(RESUME_B64,"application/pdf");
-  var blobUrl=URL.createObjectURL(blob);
-  window.open(blobUrl,"_blank");
-}
-function b64ToBlob(b64Data,contentType,sliceSize){
-  contentType=contentType||"";
-  sliceSize=sliceSize||512;
-  var byteCharacters=atob(b64Data);
-  var byteArrays=[];
-  for(var offset=0;offset<byteCharacters.length;offset+=sliceSize){
-    var slice=byteCharacters.slice(offset,offset+sliceSize);
-    var byteNumbers=new Array(slice.length);
-    for(var i=0;i<slice.length;i++){
-      byteNumbers[i]=slice.charCodeAt(i);
-    }
-    var byteArray=new Uint8Array(byteNumbers);
-    byteArrays.push(byteArray);
-  }
-  var blob=new Blob(byteArrays,{type:contentType});
-  return blob;
-}
-</script>
 </body>
 </html>
