@@ -31,16 +31,25 @@
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
+  /* Abstract Biotech & AI Background Accents */
+  .deco-bg {
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(0,180,216,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,180,216,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
     pointer-events: none;
     z-index: 0;
+    opacity: 0.4;
+  }
+  
+  /* SVG Graphic Elements: Laptop & Molecules Integration */
+  .graphic-right {
+    position: absolute;
+    right: 5%;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 450px;
+    height: 450px;
+    z-index: 1;
+    pointer-events: none;
   }
 
   /* NAV */
@@ -63,9 +72,10 @@
   /* HERO */
   .hero {
     position: relative; min-height: 100vh; display: flex;
-    align-items: center; padding: 8rem 3rem 4rem; z-index: 1;
+    align-items: center; padding: 8rem 3rem 4rem; z-index: 2;
   }
-  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; }
+  .hero-content { max-width: 650px; }
   .hero-tag {
     font-family: var(--mono); font-size: 0.75rem; color: var(--accent2);
     letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
@@ -73,7 +83,7 @@
   }
   .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent2); }
   h1 {
-    font-family: var(--sans); font-size: clamp(3.5rem, 8vw, 7rem);
+    font-family: var(--sans); font-size: clamp(3.2rem, 7.5vw, 6.5rem);
     font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem;
     color: var(--text);
   }
@@ -95,16 +105,8 @@
   .btn-secondary { background: transparent; border-color: var(--muted); color: var(--text); }
   .btn-secondary:hover { border-color: var(--accent2); color: var(--accent2); }
 
-  .hero-stats {
-    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 2rem;
-  }
-  .stat { text-align: right; }
-  .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--text); line-height: 1; }
-  .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-
   /* SECTIONS */
-  section { position: relative; z-index: 1; padding: 6rem 3rem; }
+  section { position: relative; z-index: 2; padding: 6rem 3rem; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-label {
     font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
@@ -269,7 +271,7 @@
   .contact-link:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
 
   footer {
-    position: relative; z-index: 1; text-align: center; padding: 2rem 3rem;
+    position: relative; z-index: 2; text-align: center; padding: 2rem 3rem;
     border-top: 1px solid var(--border); font-family: var(--mono);
     font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em;
     background: var(--bg);
@@ -281,6 +283,15 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  @keyframes pulseLine {
+    0%, 100% { stroke-dashoffset: 0; opacity: 0.3; }
+    50% { stroke-dashoffset: 50; opacity: 0.8; }
+  }
+
   .cursor::after { content: '|'; color: var(--accent2); animation: blink 1s infinite; margin-left: 2px; }
   .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
   .delay-1 { animation-delay: 0.1s; }
@@ -288,11 +299,25 @@
   .delay-3 { animation-delay: 0.4s; }
   .delay-4 { animation-delay: 0.55s; }
 
+  .floating-graphic {
+    animation: float 6s ease-in-out infinite;
+  }
+  .pulse-path {
+    stroke-dasharray: 12;
+    animation: pulseLine 4s linear infinite;
+  }
+
+  @media (max-width: 992px) {
+    .graphic-right { width: 350px; height: 350px; right: 2%; top: 50%; }
+    .hero-content { max-width: 550px; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     .hero { padding: 6rem 1.5rem 3rem; }
-    .hero-stats { display: none; }
+    .graphic-right { display: none; }
+    .hero-content { max-width: 100%; }
     section { padding: 4rem 1.5rem; }
     .project-card { grid-template-columns: 1fr; }
     .project-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
@@ -300,6 +325,16 @@
 </style>
 </head>
 <body>
+
+<!-- Background Tech Matrix Grid Pattern -->
+<svg class="deco-bg" width="100%" height="100%">
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,180,216,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+</svg>
 
 <!-- NAV -->
 <nav>
@@ -318,35 +353,80 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-tag fade-up">AI / ML Engineer</div>
-    <h1>
-      <span class="name-line fade-up delay-1">MOUPRIYO</span>
-      <span class="name-line name-accent fade-up delay-2 cursor">JANA</span>
-    </h1>
-    <p class="hero-desc fade-up delay-3">
-      Computer Vision · Deep Learning · Generative AI<br>
-      Research Intern @ IIT Kharagpur · AI Data Annotation Intern @ Utah Tech Labs<br>
-      Based in Medinipore, West Bengal
-    </p>
-    <div class="hero-ctas fade-up delay-4">
-      <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
-      <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
-      <a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
+    
+    <!-- Vector AI Laptop & Science Molecule Graphic Integration -->
+    <div class="graphic-right floating-graphic">
+      <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Connecting Synthetic AI / Data Line Matrix -->
+        <path class="pulse-path" d="M120 250 L200 160 L320 160 L380 230" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="pulse-path" d="M180 320 L250 350 L340 300" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="pulse-path" d="M250 110 L250 180" stroke="var(--accent3)" stroke-width="1" stroke-dasharray="4 4"/>
+        
+        <!-- Science Molecule Formations (Top Right) -->
+        <circle cx="320" cy="110" r="14" fill="#ffffff" stroke="var(--accent2)" stroke-width="3"/>
+        <circle cx="320" cy="110" r="5" fill="var(--accent2)"/>
+        <line x1="320" y1="124" x2="285" y2="150" stroke="var(--border)" stroke-width="2"/>
+        
+        <circle cx="380" cy="150" r="10" fill="#ffffff" stroke="var(--accent)" stroke-width="2.5"/>
+        <line x1="334" y1="115" x2="371" y2="144" stroke="var(--border)" stroke-width="2"/>
+        
+        <!-- Science Molecule Formations (Left / Center) -->
+        <circle cx="120" cy="250" r="16" fill="#ffffff" stroke="var(--accent)" stroke-width="3"/>
+        <circle cx="120" cy="250" r="6" fill="var(--accent)"/>
+        <line x1="135" y1="258" x2="185" y2="285" stroke="var(--border)" stroke-width="2"/>
+        
+        <circle cx="100" cy="170" r="8" fill="#ffffff" stroke="var(--border)" stroke-width="2"/>
+        <line x1="113" y1="236" x2="103" y2="178" stroke="var(--border)" stroke-width="1.5"/>
+
+        <!-- Science Molecule Formations (Bottom Right) -->
+        <circle cx="380" cy="350" r="18" fill="#ffffff" stroke="var(--accent3)" stroke-width="3"/>
+        <circle cx="380" cy="350" r="7" fill="var(--accent3)"/>
+        <line x1="340" y1="300" x2="368" y2="336" stroke="var(--border)" stroke-width="2"/>
+        
+        <circle cx="430" cy="290" r="9" fill="#ffffff" stroke="var(--accent2)" stroke-width="2"/>
+        <line x1="392" y1="338" x2="423" y2="299" stroke="var(--border)" stroke-width="2"/>
+
+        <!-- Modern Stylized Tech Laptop -->
+        <!-- Laptop Screen / Lid Frame -->
+        <rect x="170" y="180" width="200" height="130" rx="8" fill="#ffffff" stroke="var(--text)" stroke-width="3.5"/>
+        <!-- Inner Screen Area -->
+        <rect x="178" y="188" width="184" height="114" rx="4" fill="var(--surface)"/>
+        
+        <!-- Code / AI Node Mockups on Screen -->
+        <circle cx="200" cy="210" r="4" fill="var(--accent2)"/>
+        <line x1="212" y1="210" x2="260" y2="210" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="200" y1="224" x2="310" y2="224" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="200" y1="236" x2="280" y2="236" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+        
+        <circle cx="220" cy="265" r="5" fill="var(--accent)"/>
+        <line x1="232" y1="265" x2="330" y2="265" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="220" y1="278" x2="295" y2="278" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- Laptop Lower Chassis Base -->
+        <path d="M140 310 L400 310 L420 326 A 4 4 0 0 1 416 332 L124 332 A 4 4 0 0 1 120 326 Z" fill="#ffffff" stroke="var(--text)" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- Trackpad Boundary Link -->
+        <line x1="245" y1="322" x2="295" y2="322" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">96%</div>
-      <div class="stat-label">Model Accuracy</div>
+
+    <div class="hero-content">
+      <div class="hero-tag fade-up">AI / ML Engineer</div>
+      <h1>
+        <span class="name-line fade-up delay-1">MOUPRIYO</span>
+        <span class="name-line name-accent fade-up delay-2 cursor">JANA</span>
+      </h1>
+      <p class="hero-desc fade-up delay-3">
+        Computer Vision · Deep Learning · Generative AI<br>
+        Research Intern @ IIT Kharagpur · AI Data Annotation Intern @ Utah Tech Labs<br>
+        Based in Medinipore, West Bengal
+      </p>
+      <div class="hero-ctas fade-up delay-4">
+        <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
+        <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+        <a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-num">3+</div>
-      <div class="stat-label">Internships</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">7.83</div>
-      <div class="stat-label">CGPA / 10</div>
-    </div>
+
   </div>
 </section>
 
