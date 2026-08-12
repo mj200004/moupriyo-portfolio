@@ -1,768 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moupriyo Jana — AI/ML Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #ffffff;
-    --surface: #f8f9fa;
-    --card: #ffffff;
-    --border: #e9ecef;
-    --accent: #00b4d8;
-    --accent2: #7c3aed;
-    --accent3: #f59e0b;
-    --text: #1a1a24;
-    --muted: #62627a;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Syne', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* Abstract Biotech & AI Background Accents */
-  .deco-bg {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-  
-  /* SVG Graphic Elements: Laptop & Molecules Integration */
-  .graphic-right {
-    position: absolute;
-    right: 5%;
-    top: 45%;
-    transform: translateY(-50%);
-    width: 450px;
-    height: 450px;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 3rem;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--text); font-weight: 700; letter-spacing: 0.1em; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
-    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent2); }
-
-  /* HERO */
-  .hero {
-    position: relative; min-height: 100vh; display: flex;
-    align-items: center; padding: 8rem 3rem 4rem; z-index: 2;
-  }
-  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; }
-  .hero-content { max-width: 650px; }
-  .hero-tag {
-    font-family: var(--mono); font-size: 0.75rem; color: var(--accent2);
-    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent2); }
-  h1 {
-    font-family: var(--sans); font-size: clamp(3.2rem, 7.5vw, 6.5rem);
-    font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-  .name-line { display: block; }
-  .name-accent { color: transparent; -webkit-text-stroke: 2px var(--text); }
-  .hero-desc {
-    font-family: var(--mono); font-size: 0.9rem; color: var(--muted);
-    max-width: 500px; line-height: 1.8; margin-bottom: 3rem;
-  }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn {
-    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 0.85rem 2rem; border: 1px solid;
-    text-decoration: none; transition: all 0.2s; cursor: pointer;
-    font-weight: 700;
-  }
-  .btn-primary { background: var(--text); border-color: var(--text); color: var(--bg); }
-  .btn-primary:hover { background: transparent; color: var(--text); }
-  .btn-secondary { background: transparent; border-color: var(--muted); color: var(--text); }
-  .btn-secondary:hover { border-color: var(--accent2); color: var(--accent2); }
-
-  /* SECTIONS */
-  section { position: relative; z-index: 2; padding: 6rem 3rem; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
-    text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;
-  }
-  .section-title {
-    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.1;
-  }
-
-  /* ABOUT */
-  #about { background: var(--bg); }
-
-  /* SKILLS */
-  #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-  .skill-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 2rem; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    border-radius: 4px;
-  }
-  .skill-card:hover { border-color: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
-  .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-  .skill-card-title {
-    font-family: var(--mono); font-size: 0.75rem; color: var(--text); font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    font-family: var(--mono); font-size: 0.65rem; padding: 0.25rem 0.6rem;
-    background: rgba(124, 58, 237, 0.05); border: 1px solid rgba(124, 58, 237, 0.15);
-    color: var(--text); letter-spacing: 0.05em; border-radius: 3px;
-  }
-
-  /* EDUCATION */
-  .edu-stack { display: flex; flex-direction: column; gap: 1.2rem; }
-  .edu-card {
-    border: 1px solid var(--border); background: var(--card);
-    padding: 1.8rem 2rem; display: flex; justify-content: space-between;
-    align-items: flex-start; gap: 1.5rem; flex-wrap: wrap;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    border-radius: 4px;
-  }
-  .edu-card:hover { border-color: var(--accent2); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
-  .edu-level {
-    font-family: var(--mono); font-size: 0.63rem; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem;
-  }
-  .edu-degree { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
-  .edu-school { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
-  .edu-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
-  .edu-cgpa {
-    font-family: var(--mono); font-size: 0.7rem; color: var(--text); font-weight: 700;
-    background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.2);
-    padding: 0.35rem 0.9rem; white-space: nowrap; border-radius: 3px;
-  }
-  .edu-year { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
-
-  /* EXPERIENCE */
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 2px; background: linear-gradient(to bottom, var(--accent2), transparent);
-  }
-  .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2rem; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -2.4rem; top: 0.4rem;
-    width: 10px; height: 10px; background: var(--bg); border: 2px solid var(--accent2); border-radius: 50%;
-    z-index: 2;
-  }
-  .timeline-date { font-family: var(--mono); font-size: 0.7rem; color: var(--accent2); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-  .timeline-role { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--text); }
-  .timeline-company { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
-  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-  .timeline-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; }
-  .timeline-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent2); font-weight: 700; }
-
-  /* PROJECTS */
-  #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .projects-list { display: flex; flex-direction: column; gap: 1.8rem; }
-
-  .project-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 2rem 2.5rem; position: relative; overflow: hidden;
-    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    display: grid;
-    grid-template-columns: 1fr 160px;
-    grid-template-rows: auto auto auto;
-    column-gap: 2rem; row-gap: 0;
-    border-radius: 4px;
-  }
-  .project-card::before {
-    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
-    width: 4px; background: linear-gradient(to bottom, var(--accent2), var(--accent));
-    transform: scaleY(0); transform-origin: top; transition: transform 0.3s;
-  }
-  .project-card:hover::before { transform: scaleY(1); }
-  .project-card:hover { border-color: var(--accent2); transform: translateX(5px); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
-
-  .project-header {
-    grid-column: 1; grid-row: 1;
-    display: flex; align-items: center; gap: 1rem; margin-bottom: 0.55rem;
-  }
-  .project-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; flex-shrink: 0; }
-  .project-title-link {
-    font-size: 1.15rem; font-weight: 700; color: var(--text);
-    text-decoration: none; line-height: 1.3; transition: color 0.2s;
-  }
-  .project-title-link:hover { color: var(--accent2); }
-  .project-title-link::after { content: ' ↗'; font-size: 0.8rem; opacity: 0.45; }
-
-  .project-stack {
-    grid-column: 1; grid-row: 2;
-    font-family: var(--mono); font-size: 0.67rem; color: var(--muted); font-weight: 700;
-    letter-spacing: 0.06em; margin-bottom: 1rem;
-  }
-  .project-desc {
-    grid-column: 1; grid-row: 3;
-    font-size: 0.87rem; color: var(--muted); line-height: 1.8;
-  }
-
-  .project-meta {
-    grid-column: 2; grid-row: 1 / 4;
-    display: flex; flex-direction: column; align-items: flex-end;
-    justify-content: center; gap: 1rem;
-  }
-  .project-badge {
-    font-family: var(--mono); font-size: 0.6rem;
-    padding: 0.28rem 0.7rem; background: rgba(245,158,11,0.08);
-    border: 1px solid rgba(245,158,11,0.3); color: var(--accent3);
-    letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; text-align: center;
-    font-weight: 700; border-radius: 3px;
-  }
-  .project-github-btn {
-    font-family: var(--mono); font-size: 0.68rem; color: var(--text); font-weight: 700;
-    text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--text);
-    letter-spacing: 0.07em; transition: all 0.2s; white-space: nowrap;
-    display: flex; align-items: center; gap: 0.4rem; border-radius: 3px;
-  }
-  .project-github-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-
-  /* ACHIEVEMENTS */
-  .achievements-list { display: flex; flex-direction: column; gap: 1.5rem; }
-  .achievement-item {
-    display: flex; gap: 1.5rem; align-items: flex-start;
-    padding: 1.5rem; border: 1px solid var(--border); background: var(--card); transition: border-color 0.2s;
-    border-radius: 4px;
-  }
-  .achievement-item:hover { border-color: var(--accent3); }
-  .achievement-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .achievement-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-
-  /* CONTACT */
-  #contact { background: var(--surface); text-align: center; border-top: 1px solid var(--border); }
-  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
-  .contact-link {
-    font-family: var(--mono); font-size: 0.75rem; color: var(--text); font-weight: 700;
-    text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--text);
-    letter-spacing: 0.08em; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
-    background: var(--card); border-radius: 4px;
-  }
-  .contact-link:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
-
-  footer {
-    position: relative; z-index: 2; text-align: center; padding: 2rem 3rem;
-    border-top: 1px solid var(--border); font-family: var(--mono);
-    font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em;
-    background: var(--bg);
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(3deg); }
-  }
-  @keyframes pulseLine {
-    0%, 100% { stroke-dashoffset: 0; opacity: 0.3; }
-    50% { stroke-dashoffset: 50; opacity: 0.8; }
-  }
-
-  .cursor::after { content: '|'; color: var(--accent2); animation: blink 1s infinite; margin-left: 2px; }
-  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.25s; }
-  .delay-3 { animation-delay: 0.4s; }
-  .delay-4 { animation-delay: 0.55s; }
-
-  .floating-graphic {
-    animation: float 6s ease-in-out infinite;
-  }
-  .pulse-path {
-    stroke-dasharray: 12;
-    animation: pulseLine 4s linear infinite;
-  }
-
-  @media (max-width: 992px) {
-    .graphic-right { width: 350px; height: 350px; right: 2%; top: 50%; }
-    .hero-content { max-width: 550px; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 6rem 1.5rem 3rem; }
-    .graphic-right { display: none; }
-    .hero-content { max-width: 100%; }
-    section { padding: 4rem 1.5rem; }
-    .project-card { grid-template-columns: 1fr; }
-    .project-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moupriyo Jana — AI/ML Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {--bg: #ffffff; --surface: #f8f9fa; --card: #ffffff; --border: #e9ecef; --accent: #00b4d8; --accent2: #7c3aed; --accent3: #f59e0b; --text: #1a1a24; --muted: #62627a; --mono: 'Space Mono', monospace; --sans: 'Syne', sans-serif; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Abstract Biotech & AI Background Accents */
+        .deco-bg {position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4; }
+        
+        /* SVG Graphic Elements: Laptop & Molecules Integration */
+        .graphic-right {position: absolute; right: 5%; top: 45%; transform: translateY(-50%); width: 450px; height: 450px; z-index: 1; pointer-events: none; }
+        
+        /* NAV */
+        nav {position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--text); font-weight: 700; letter-spacing: 0.1em; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent2); }
+        
+        /* HERO */
+        .hero {position: relative; min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; z-index: 2; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; }
+        .hero-content { max-width: 650px; }
+        .hero-tag {font-family: var(--mono); font-size: 0.75rem; color: var(--accent2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent2); }
+        h1 {font-family: var(--sans); font-size: clamp(3.2rem, 7.5vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+        .name-line { display: block; }
+        .name-accent { color: transparent; -webkit-text-stroke: 2px var(--text); }
+        .hero-desc {font-family: var(--mono); font-size: 0.9rem; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 3rem; }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 2rem; border: 1px solid; text-decoration: none; transition: all 0.2s; cursor: pointer; font-weight: 700; }
+        .btn-primary { background: var(--text); border-color: var(--text); color: var(--bg); }
+        .btn-primary:hover { background: transparent; color: var(--text); }
+        .btn-secondary { background: transparent; border-color: var(--muted); color: var(--text); }
+        .btn-secondary:hover { border-color: var(--accent2); color: var(--accent2); }
+        
+        /* SECTIONS */
+        section { position: relative; z-index: 2; padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {font-family: var(--mono); font-size: 0.7rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .section-title {font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.1; }
+        
+        /* ABOUT */
+        #about { background: var(--bg); }
+        
+        /* SKILLS */
+        #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .skill-card {background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; border-radius: 4px; }
+        .skill-card:hover { border-color: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+        .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+        .skill-card-title {font-family: var(--mono); font-size: 0.75rem; color: var(--text); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tag {font-family: var(--mono); font-size: 0.65rem; padding: 0.25rem 0.6rem; background: rgba(124, 58, 237, 0.05); border: 1px solid rgba(124, 58, 237, 0.15); color: var(--text); letter-spacing: 0.05em; border-radius: 3px; }
+        
+        /* EDUCATION */
+        .edu-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+        .edu-card {border: 1px solid var(--border); background: var(--card); padding: 1.8rem 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; transition: border-color 0.2s, box-shadow 0.2s; border-radius: 4px; }
+        .edu-card:hover { border-color: var(--accent2); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+        .edu-level {font-family: var(--mono); font-size: 0.63rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
+        .edu-degree { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
+        .edu-school { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+        .edu-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
+        .edu-cgpa {font-family: var(--mono); font-size: 0.7rem; color: var(--text); font-weight: 700; background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.2); padding: 0.35rem 0.9rem; white-space: nowrap; border-radius: 3px; }
+        .edu-year { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
+        
+        /* EXPERIENCE */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent2), transparent); }
+        .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2rem; }
+        .timeline-item::before {content: ''; position: absolute; left: -2.4rem; top: 0.4rem; width: 10px; height: 10px; background: var(--bg); border: 2px solid var(--accent2); border-radius: 50%; z-index: 2; }
+        .timeline-date { font-family: var(--mono); font-size: 0.7rem; color: var(--accent2); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+        .timeline-role { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--text); }
+        .timeline-company { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
+        .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+        .timeline-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; }
+        .timeline-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent2); font-weight: 700; }
+        
+        /* PROJECTS */
+        #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .projects-list { display: flex; flex-direction: column; gap: 1.8rem; }
+        .project-card {background: var(--card); border: 1px solid var(--border); padding: 2rem 2.5rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; display: grid; grid-template-columns: 1fr 160px; grid-template-rows: auto auto auto; column-gap: 2rem; row-gap: 0; border-radius: 4px; }
+        .project-card::before {content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--accent2), var(--accent)); transform: scaleY(0); transform-origin: top; transition: transform 0.3s; }
+        .project-card:hover::before { transform: scaleY(1); }
+        .project-card:hover { border-color: var(--accent2); transform: translateX(5px); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+        .project-header {grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: 1rem; margin-bottom: 0.55rem; }
+        .project-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; flex-shrink: 0; }
+        .project-title-link {font-size: 1.15rem; font-weight: 700; color: var(--text); text-decoration: none; line-height: 1.3; transition: color 0.2s; }
+        .project-title-link:hover { color: var(--accent2); }
+        .project-title-link::after { content: ' ↗'; font-size: 0.8rem; opacity: 0.45; }
+        .project-stack {grid-column: 1; grid-row: 2; font-family: var(--mono); font-size: 0.67rem; color: var(--muted); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 1rem; }
+        .project-desc {grid-column: 1; grid-row: 3; font-size: 0.87rem; color: var(--muted); line-height: 1.8; }
+        .project-meta {grid-column: 2; grid-row: 1 / 4; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 1rem; }
+        .project-badge {font-family: var(--mono); font-size: 0.6rem; padding: 0.28rem 0.7rem; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); color: var(--accent3); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; text-align: center; font-weight: 700; border-radius: 3px; }
+        .project-github-btn {font-family: var(--mono); font-size: 0.68rem; color: var(--text); font-weight: 700; text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--text); letter-spacing: 0.07em; transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; border-radius: 3px; }
+        .project-github-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+        
+        /* ACHIEVEMENTS */
+        .achievements-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .achievement-item {display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem; border: 1px solid var(--border); background: var(--card); transition: border-color 0.2s; border-radius: 4px; }
+        .achievement-item:hover { border-color: var(--accent3); }
+        .achievement-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .achievement-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+        
+        /* CONTACT */
+        #contact { background: var(--surface); text-align: center; border-top: 1px solid var(--border); }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+        .contact-link {font-family: var(--mono); font-size: 0.75rem; color: var(--text); font-weight: 700; text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--text); letter-spacing: 0.08em; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; background: var(--card); border-radius: 4px; }
+        .contact-link:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+        
+        footer {position: relative; z-index: 2; text-align: center; padding: 2rem 3rem; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; background: var(--bg); }
+        
+        /* ANIMATIONS */
+        @keyframes fadeUp {from { opacity: 0; transform: translateY(24px); } to   { opacity: 1; transform: translateY(0); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes float {0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
+        @keyframes pulseLine {0%, 100% { stroke-dashoffset: 0; opacity: 0.3; } 50% { stroke-dashoffset: 50; opacity: 0.8; } }
+        .cursor::after { content: '|'; color: var(--accent2); animation: blink 1s infinite; margin-left: 2px; }
+        .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+        .delay-4 { animation-delay: 0.55s; }
+        .floating-graphic {animation: float 6s ease-in-out infinite; }
+        .pulse-path {stroke-dasharray: 12; animation: pulseLine 4s linear infinite; }
+        
+        @media (max-width: 992px) {.graphic-right { width: 350px; height: 350px; right: 2%; top: 50%; } .hero-content { max-width: 550px; } }
+        @media (max-width: 768px) {nav { padding: 1rem 1.5rem; } .nav-links { display: none; } .hero { padding: 6rem 1.5rem 3rem; } .graphic-right { display: none; } .hero-content { max-width: 100%; } section { padding: 4rem 1.5rem; } .project-card { grid-template-columns: 1fr; } .project-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; } }
+    </style>
 </head>
 <body>
+    <!-- Background Tech Matrix Grid Pattern -->
+    <svg class="deco-bg" width="100%" height="100%">
+        <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,180,216,0.04)" stroke-width="1"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
 
-<!-- Background Tech Matrix Grid Pattern -->
-<svg class="deco-bg" width="100%" height="100%">
-  <defs>
-    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,180,216,0.04)" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#grid)" />
-</svg>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">MJ.dev</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" style="color:var(--accent3)!important; font-weight: 700;">↗ Resume</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    
-    <!-- Vector AI Laptop & Science Molecule Graphic Integration -->
-    <div class="graphic-right floating-graphic">
-      <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Connecting Synthetic AI / Data Line Matrix -->
-        <path class="pulse-path" d="M120 250 L200 160 L320 160 L380 230" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="pulse-path" d="M180 320 L250 350 L340 300" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
-        <path class="pulse-path" d="M250 110 L250 180" stroke="var(--accent3)" stroke-width="1" stroke-dasharray="4 4"/>
-        
-        <!-- Science Molecule Formations (Top Right) -->
-        <circle cx="320" cy="110" r="14" fill="#ffffff" stroke="var(--accent2)" stroke-width="3"/>
-        <circle cx="320" cy="110" r="5" fill="var(--accent2)"/>
-        <line x1="320" y1="124" x2="285" y2="150" stroke="var(--border)" stroke-width="2"/>
-        
-        <circle cx="380" cy="150" r="10" fill="#ffffff" stroke="var(--accent)" stroke-width="2.5"/>
-        <line x1="334" y1="115" x2="371" y2="144" stroke="var(--border)" stroke-width="2"/>
-        
-        <!-- Science Molecule Formations (Left / Center) -->
-        <circle cx="120" cy="250" r="16" fill="#ffffff" stroke="var(--accent)" stroke-width="3"/>
-        <circle cx="120" cy="250" r="6" fill="var(--accent)"/>
-        <line x1="135" y1="258" x2="185" y2="285" stroke="var(--border)" stroke-width="2"/>
-        
-        <circle cx="100" cy="170" r="8" fill="#ffffff" stroke="var(--border)" stroke-width="2"/>
-        <line x1="113" y1="236" x2="103" y2="178" stroke="var(--border)" stroke-width="1.5"/>
-
-        <!-- Science Molecule Formations (Bottom Right) -->
-        <circle cx="380" cy="350" r="18" fill="#ffffff" stroke="var(--accent3)" stroke-width="3"/>
-        <circle cx="380" cy="350" r="7" fill="var(--accent3)"/>
-        <line x1="340" y1="300" x2="368" y2="336" stroke="var(--border)" stroke-width="2"/>
-        
-        <circle cx="430" cy="290" r="9" fill="#ffffff" stroke="var(--accent2)" stroke-width="2"/>
-        <line x1="392" y1="338" x2="423" y2="299" stroke="var(--border)" stroke-width="2"/>
-
-        <!-- Modern Stylized Tech Laptop -->
-        <!-- Laptop Screen / Lid Frame -->
-        <rect x="170" y="180" width="200" height="130" rx="8" fill="#ffffff" stroke="var(--text)" stroke-width="3.5"/>
-        <!-- Inner Screen Area -->
-        <rect x="178" y="188" width="184" height="114" rx="4" fill="var(--surface)"/>
-        
-        <!-- Code / AI Node Mockups on Screen -->
-        <circle cx="200" cy="210" r="4" fill="var(--accent2)"/>
-        <line x1="212" y1="210" x2="260" y2="210" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="200" y1="224" x2="310" y2="224" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="200" y1="236" x2="280" y2="236" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
-        
-        <circle cx="220" cy="265" r="5" fill="var(--accent)"/>
-        <line x1="232" y1="265" x2="330" y2="265" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="220" y1="278" x2="295" y2="278" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
-
-        <!-- Laptop Lower Chassis Base -->
-        <path d="M140 310 L400 310 L420 326 A 4 4 0 0 1 416 332 L124 332 A 4 4 0 0 1 120 326 Z" fill="#ffffff" stroke="var(--text)" stroke-width="3.5" stroke-linejoin="round"/>
-        <!-- Trackpad Boundary Link -->
-        <line x1="245" y1="322" x2="295" y2="322" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-
-    <div class="hero-content">
-      <div class="hero-tag fade-up">AI / ML Engineer</div>
-      <h1>
-        <span class="name-line fade-up delay-1">MOUPRIYO</span>
-        <span class="name-line name-accent fade-up delay-2 cursor">JANA</span>
-      </h1>
-      <p class="hero-desc fade-up delay-3">
-        Computer Vision · Deep Learning · Generative AI<br>
-        Research Intern @ IIT Kharagpur · AI Data Annotation Intern @ Utah Tech Labs<br>
-        Based in Medinipore, West Bengal
-      </p>
-      <div class="hero-ctas fade-up delay-4">
-        <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
-        <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/moupriyo-jana-11b81725b/?skipRedirect=true" target="_blank" class="btn btn-secondary">LinkedIn ↗</a>
-        <a href="https://drive.google.com/file/d/1KQl5GXJlOxg9_rKXJQvKE67Lg1HaOSGj/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <div class="section-label">// 00 — about me</div>
-    <h2 class="section-title">Who I Am</h2>
-    <div style="max-width:760px; margin-top:1.5rem; line-height:1.85; color:var(--muted); font-size:1rem;">
-      <p style="margin-bottom:1.2rem;">
-        I'm <strong style="color:var(--text);">Moupriyo Jana</strong>, a final-year B.Tech Computer Science student from West Bengal, India,
-        specialising in Artificial Intelligence, Machine Learning, and Computer Vision.
-        I don't just study AI — <em style="color:var(--accent2); font-weight: 600;">I build with it.</em>
-      </p>
-      <p style="margin-bottom:1.2rem;">
-        Currently I'm working as a <strong style="color:var(--text);">Research Intern at IIT Kharagpur (SMST)</strong>, where I develop
-        deep learning models for medical image analysis and contribute to an active research paper.
-        Alongside that, I work as a <strong style="color:var(--text);">paid AI Data Annotation Intern at Utah Tech Labs</strong>,
-        ensuring high-quality datasets that power real AI systems. Previously, I completed an
-        <strong style="color:var(--text);">AI Developer Internship at Infosys Springboard</strong>, where I built and deployed a
-        full-stack AI-powered Business Analyzer with Docker and Railway.
-      </p>
-      <p style="margin-bottom:1.2rem;">
-        My technical toolkit spans TensorFlow, PyTorch, Hugging Face, OpenCV, AWS Bedrock, FastAPI, and more.
-        I've built a 17-class image classifier hitting <strong style="color:var(--text);">96% validation accuracy</strong>,
-        led a team to architect a <strong style="color:var(--text);">serverless AI tutoring platform</strong> at a national hackathon,
-        and built AQI prediction pipelines using clustering and ML.
-      </p>
-      <p>
-        I thrive at the intersection of research and shipping — I enjoy going from idea to working prototype quickly,
-        collaborating with driven teams, and solving problems that actually matter. I'm currently open to AI/ML internships
-        and research opportunities where I can contribute meaningfully from day one.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-inner">
-    <div class="section-label">// 01 — technical skills</div>
-    <h2 class="section-title">What I Work With</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-card-icon">🧠</div>
-        <div class="skill-card-title">AI/ML Frameworks</div>
-        <div class="skill-tags">
-          <span class="tag">TensorFlow</span><span class="tag">Keras</span>
-          <span class="tag">PyTorch</span><span class="tag">Scikit-learn</span>
-          <span class="tag">Hugging Face</span><span class="tag">OpenCV</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">✨</div>
-        <div class="skill-card-title">Generative AI / LLMs</div>
-        <div class="skill-tags">
-          <span class="tag">Transformers</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">Gemini API</span>
-          <span class="tag">LangChain</span>
-          <span class="tag">RAG Frameworks</span>
-          <span class="tag">AWS Bedrock</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">👁️</div>
-        <div class="skill-card-title">Computer Vision & Imaging</div>
-        <div class="skill-tags">
-          <span class="tag">Medical Image Segmentation</span>
-          <span class="tag">InceptionV3</span><span class="tag">ResNet50</span>
-          <span class="tag">Transfer Learning</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">☁️</div>
-        <div class="skill-card-title">MLOps & Cloud</div>
-        <div class="skill-tags">
-          <span class="tag">Docker</span><span class="tag">Railway</span>
-          <span class="tag">Render</span><span class="tag">Flask</span>
-          <span class="tag">Streamlit</span><span class="tag">FastAPI</span>
-          <span class="tag">AWS Lambda</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">💻</div>
-        <div class="skill-card-title">Languages</div>
-        <div class="skill-tags">
-          <span class="tag">Python</span><span class="tag">SQL</span>
-          <span class="tag">Java</span><span class="tag">MATLAB</span>
-          <span class="tag">JavaScript</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">🔬</div>
-        <div class="skill-card-title">Domains</div>
-        <div class="skill-tags">
-          <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
-          <span class="tag">NLP</span><span class="tag">Computer Vision</span>
-          <span class="tag">Web Scraping</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-inner">
-    <div class="section-label">// 02 — education</div>
-    <h2 class="section-title">Academic Background</h2>
-    <div class="edu-stack">
-
-      <div class="edu-card">
-        <div>
-          <div class="edu-level">Undergraduate</div>
-          <div class="edu-degree">B.Tech in Computer Science & Engineering</div>
-          <div class="edu-school">Government College of Engineering & Textile Technology, Berhampore</div>
-        </div>
-        <div class="edu-right">
-          <div class="edu-cgpa">CGPA: 7.83 / 10</div>
-          <div class="edu-year">Sept 2022 – July 2026</div>
-        </div>
-      </div>
-
-      <div class="edu-card">
-        <div>
-          <div class="edu-level">Higher Secondary (Class XII)</div>
-          <div class="edu-degree">Science Stream</div>
-          <div class="edu-school">Keranitola Shree Shree Mohonananda Vidyamandir</div>
-        </div>
-        <div class="edu-right">
-          <div class="edu-cgpa">80.02%</div>
-          <div class="edu-year">2021 – 2022</div>
-        </div>
-      </div>
-
-      <div class="edu-card">
-        <div>
-          <div class="edu-level">Secondary (Class X)</div>
-          <div class="edu-degree">General Studies</div>
-          <div class="edu-school">Nayagram High School</div>
-        </div>
-        <div class="edu-right">
-          <div class="edu-cgpa">88.28%</div>
-          <div class="edu-year">2019 – 2020</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-inner">
-    <div class="section-label">// 03 — experience</div>
-    <h2 class="section-title">Where I've Worked</h2>
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-date">JAN 2026 – MAY 2026</div>
-        <div class="timeline-role">Research Intern</div>
-        <div class="timeline-company">School of Medical Science & Technology (SMST), IIT Kharagpur</div>
-        <ul class="timeline-bullets">
-          <li>Worked on Medical Image Analysis using Artificial Intelligence, Machine Learning, and Deep Learning models.</li>
-          <li>Focused on Computer Vision, model optimization, and performance evaluation for healthcare imaging applications.</li>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">MJ.dev</div>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://drive.google.com/file/d/14Ph2y_1Nib6H3wRTbUMV4WtxZ__KMsO_/view?usp=drive_link" target="_blank" style="color:var(--accent3)!important; font-weight: 700;">↗ Resume</a></li>
         </ul>
-      </div>
+    </nav>
 
-      <div class="timeline-item">
-        <div class="timeline-date">FEB 2026 – PRESENT</div>
-        <div class="timeline-role">AI Data Annotation Intern</div>
-        <div class="timeline-company">Utah Tech Labs — Remote</div>
-        <ul class="timeline-bullets">
-          <li>Annotating and labelling data (text, image, audio, and video) as per project guidelines.</li>
-          <li>Ensuring accuracy and quality of annotated datasets.</li>
-          <li>Reviewing and validating annotated data.</li>
-          <li>Maintaining confidentiality of data and project information.</li>
-          <li>Meeting productivity and quality benchmarks.</li>
-        </ul>
-      </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <!-- Vector AI Laptop & Science Molecule Graphic Integration -->
+            <div class="graphic-right floating-graphic">
+                <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Connecting Synthetic AI / Data Line Matrix -->
+                    <path class="pulse-path" d="M120 250 L200 160 L320 160 L380 230" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="pulse-path" d="M180 320 L250 350 L340 300" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path class="pulse-path" d="M250 110 L250 180" stroke="var(--accent3)" stroke-width="1" stroke-dasharray="4 4"/>
+                    
+                    <!-- Science Molecule Formations (Top Right) -->
+                    <circle cx="320" cy="110" r="14" fill="#ffffff" stroke="var(--accent2)" stroke-width="3"/>
+                    <circle cx="320" cy="110" r="5" fill="var(--accent2)"/>
+                    <line x1="320" y1="124" x2="285" y2="150" stroke="var(--border)" stroke-width="2"/>
+                    <circle cx="380" cy="150" r="10" fill="#ffffff" stroke="var(--accent)" stroke-width="2.5"/>
+                    <line x1="334" y1="115" x2="371" y2="144" stroke="var(--border)" stroke-width="2"/>
+                    
+                    <!-- Science Molecule Formations (Left / Center) -->
+                    <circle cx="120" cy="250" r="16" fill="#ffffff" stroke="var(--accent)" stroke-width="3"/>
+                    <circle cx="120" cy="250" r="6" fill="var(--accent)"/>
+                    <line x1="135" y1="258" x2="185" y2="285" stroke="var(--border)" stroke-width="2"/>
+                    <circle cx="100" cy="170" r="8" fill="#ffffff" stroke="var(--border)" stroke-width="2"/>
+                    <line x1="113" y1="236" x2="103" y2="178" stroke="var(--border)" stroke-width="1.5"/>
+                    
+                    <!-- Science Molecule Formations (Bottom Right) -->
+                    <circle cx="380" cy="350" r="18" fill="#ffffff" stroke="var(--accent3)" stroke-width="3"/>
+                    <circle cx="380" cy="350" r="7" fill="var(--accent3)"/>
+                    <line x1="340" y1="300" x2="368" y2="336" stroke="var(--border)" stroke-width="2"/>
+                    <circle cx="430" cy="290" r="9" fill="#ffffff" stroke="var(--accent2)" stroke-width="2"/>
+                    <line x1="392" y1="338" x2="423" y2="299" stroke="var(--border)" stroke-width="2"/>
+                    
+                    <!-- Modern Stylized Tech Laptop -->
+                    <!-- Laptop Screen / Lid Frame -->
+                    <rect x="170" y="180" width="200" height="130" rx="8" fill="#ffffff" stroke="var(--text)" stroke-width="3.5"/>
+                    <!-- Inner Screen Area -->
+                    <rect x="178" y="188" width="184" height="114" rx="4" fill="var(--surface)"/>
+                    <!-- Code / AI Node Mockups on Screen -->
+                    <circle cx="200" cy="210" r="4" fill="var(--accent2)"/>
+                    <line x1="212" y1="210" x2="260" y2="210" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="200" y1="224" x2="310" y2="224" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="200" y1="236" x2="280" y2="236" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="220" cy="265" r="5" fill="var(--accent)"/>
+                    <line x1="232" y1="265" x2="330" y2="265" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="220" y1="278" x2="295" y2="278" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Laptop Lower Chassis Base -->
+                    <path d="M140 310 L400 310 L420 326 A 4 4 0 0 1 416 332 L124 332 A 4 4 0 0 1 120 326 Z" fill="#ffffff" stroke="var(--text)" stroke-width="3.5" stroke-linejoin="round"/>
+                    <!-- Trackpad Boundary Link -->
+                    <line x1="245" y1="322" x2="295" y2="322" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-tag fade-up">AI / ML Engineer</div>
+                <h1>
+                    <span class="name-line fade-up delay-1">MOUPRIYO</span>
+                    <span class="name-line name-accent fade-up delay-2 cursor">JANA</span>
+                </h1>
+                <p class="hero-desc fade-up delay-3">
+                    Computer Vision · Deep Learning · Generative AI<br>
+                    Research Intern @ IIT Kharagpur · AI Data Annotation Intern @ Utah Tech Labs<br>
+                    Based in Medinipore, West Bengal
+                </p>
+                <div class="hero-ctas fade-up delay-4">
+                    <a href="mailto:janamoupriyo@gmail.com" class="btn btn-primary">Get in Touch</a>
+                    <a href="https://github.com/mj200004" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/moupriyo-jana-11b81725b/?skipRedirect=true" target="_blank" class="btn btn-secondary">LinkedIn ↗</a>
+                    <a href="https://drive.google.com/file/d/14Ph2y_1Nib6H3wRTbUMV4WtxZ__KMsO_/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="border-color:var(--accent3);color:var(--accent3);">↗ Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="timeline-item">
-        <div class="timeline-date">JAN 2026 – APR 2026</div>
-        <div class="timeline-role">Artificial Intelligence Intern</div>
-        <div class="timeline-company">Infosys Springboard Virtual Internship Platform</div>
-        <ul class="timeline-bullets">
-          <li>Built and deployed a full-stack AI-powered Business Analyzer (Streamlit + Docker + Railway).</li>
-          <li>Implemented JWT authentication, CSV-based P&L generation, and automated cash flow alerts.</li>
-        </ul>
-      </div>
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-label">// 00 — about me</div>
+            <h2 class="section-title">Who I Am</h2>
+            <div style="max-width:760px; margin-top:1.5rem; line-height:1.85; color:var(--muted); font-size:1rem;">
+                <p style="margin-bottom:1.2rem;">
+                    I'm <strong style="color:var(--text);">Moupriyo Jana</strong>, a final-year B.Tech Computer Science student from West Bengal, India, specialising in Artificial Intelligence, Machine Learning, and Computer Vision. I don't just study AI — <em style="color:var(--accent2); font-weight: 600;">I build with it.</em>
+                </p>
+                <p style="margin-bottom:1.2rem;">
+                    Currently I'm working as a <strong style="color:var(--text);">Research Intern at IIT Kharagpur (SMST)</strong>, where I develop deep learning models for medical image analysis and contribute to an active research paper. Alongside that, I work as a <strong style="color:var(--text);">paid AI Data Annotation Intern at Utah Tech Labs</strong>, ensuring high-quality datasets that power real AI systems. Previously, I completed an <strong style="color:var(--text);">AI Developer Internship at Infosys Springboard</strong>, where I built and deployed a full-stack AI-powered Business Analyzer with Docker and Railway.
+                </p>
+                <p style="margin-bottom:1.2rem;">
+                    My technical toolkit spans TensorFlow, PyTorch, Hugging Face, OpenCV, AWS Bedrock, FastAPI, and more. I've built a 17-class image classifier hitting <strong style="color:var(--text);">96% validation accuracy</strong>, led a team to architect a <strong style="color:var(--text);">serverless AI tutoring platform</strong> at a national hackathon, and built AQI prediction pipelines using clustering and ML.
+                </p>
+                <p>
+                    I thrive at the intersection of research and shipping — I enjoy going from idea to working prototype quickly, collaborating with driven teams, and solving problems that actually matter. I'm currently open to AI/ML internships and research opportunities where I can contribute meaningfully from day one.
+                </p>
+            </div>
+        </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-inner">
+            <div class="section-label">// 01 — technical skills</div>
+            <h2 class="section-title">What I Work With</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-card-icon">🧠</div>
+                    <div class="skill-card-title">AI/ML Frameworks</div>
+                    <div class="skill-tags">
+                        <span class="tag">TensorFlow</span><span class="tag">Keras</span>
+                        <span class="tag">PyTorch</span><span class="tag">Scikit-learn</span>
+                        <span class="tag">Hugging Face</span><span class="tag">OpenCV</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">✨</div>
+                    <div class="skill-card-title">Generative AI / LLMs</div>
+                    <div class="skill-tags">
+                        <span class="tag">Transformers</span>
+                        <span class="tag">Prompt Engineering</span>
+                        <span class="tag">Gemini API</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">RAG Frameworks</span>
+                        <span class="tag">AWS Bedrock</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">👁️</div>
+                    <div class="skill-card-title">Computer Vision & Imaging</div>
+                    <div class="skill-tags">
+                        <span class="tag">Medical Image Segmentation</span>
+                        <span class="tag">InceptionV3</span><span class="tag">ResNet50</span>
+                        <span class="tag">Transfer Learning</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">☁️</div>
+                    <div class="skill-card-title">MLOps & Cloud</div>
+                    <div class="skill-tags">
+                        <span class="tag">Docker</span><span class="tag">Railway</span>
+                        <span class="tag">Render</span><span class="tag">Flask</span>
+                        <span class="tag">Streamlit</span><span class="tag">FastAPI</span>
+                        <span class="tag">AWS Lambda</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">💻</div>
+                    <div class="skill-card-title">Languages</div>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span><span class="tag">SQL</span>
+                        <span class="tag">Java</span><span class="tag">MATLAB</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon">🔬</div>
+                    <div class="skill-card-title">Domains</div>
+                    <div class="skill-tags">
+                        <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
+                        <span class="tag">NLP</span><span class="tag">Computer Vision</span>
+                        <span class="tag">Web Scraping</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-inner">
-    <div class="section-label">// 04 — projects</div>
-    <h2 class="section-title">Things I've Built</h2>
-    <div class="projects-list">
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="section-inner">
+            <div class="section-label">// 02 — education</div>
+            <h2 class="section-title">Academic Background</h2>
+            <div class="edu-stack">
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-level">Undergraduate</div>
+                        <div class="edu-degree">B.Tech in Computer Science & Engineering</div>
+                        <div class="edu-school">Government College of Engineering & Textile Technology, Berhampore</div>
+                    </div>
+                    <div class="edu-right">
+                        <div class="edu-cgpa">CGPA: 7.83 / 10</div>
+                        <div class="edu-year">Sept 2022 – July 2026</div>
+                    </div>
+                </div>
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-level">Higher Secondary (Class XII)</div>
+                        <div class="edu-degree">Science Stream</div>
+                        <div class="edu-school">Keranitola Shree Shree Mohonananda Vidyamandir</div>
+                    </div>
+                    <div class="edu-right">
+                        <div class="edu-cgpa">80.02%</div>
+                        <div class="edu-year">2021 – 2022</div>
+                    </div>
+                </div>
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-level">Secondary (Class X)</div>
+                        <div class="edu-degree">General Studies</div>
+                        <div class="edu-school">Keranitola Shree Shree Mohonananda Vidyamandir</div>
+                    </div>
+                    <div class="edu-right">
+                        <div class="edu-cgpa">82.14%</div>
+                        <div class="edu-year">2019 – 2020</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <!-- Project 1: CompanyLens -->
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">PROJECT_01</span>
-          <a href="https://companylens-ai-company-enrichment-tool-1.onrender.com/" target="_blank" class="project-title-link">CompanyLens — AI-Powered Company Enrichment Platform</a>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-inner">
+            <div class="section-label">// 03 — experience</div>
+            <h2 class="section-title">Where I've Worked</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025 – Present</div>
+                    <div class="timeline-role">Research Intern</div>
+                    <div class="timeline-company">School of Medical Science and Technology (SMST), IIT Kharagpur</div>
+                    <ul class="timeline-bullets">
+                        <li>Developing deep learning algorithms for medical image processing and segmentation tasks.</li>
+                        <li>Engaged in active research writing and experimental evaluation for peer-reviewed publication.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025 – Present</div>
+                    <div class="timeline-role">AI Data Annotation Intern</div>
+                    <div class="timeline-company">Utah Tech Labs</div>
+                    <ul class="timeline-bullets">
+                        <li>Annotating and labeling complex datasets to train production computer vision and NLP models.</li>
+                        <li>Performing quality assurance on data pipelines to maintain high precision standards.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2024 – Dec 2024</div>
+                    <div class="timeline-role">AI Developer Intern</div>
+                    <div class="timeline-company">Infosys Springboard</div>
+                    <ul class="timeline-bullets">
+                        <li>Built an AI-powered Business Analyzer integrating Gemini API, LangChain, and Streamlit.</li>
+                        <li>Containerized the solution using Docker and successfully deployed it on Railway platform.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; Gemini API &nbsp;·&nbsp; LangChain &nbsp;·&nbsp; RAG Frameworks &nbsp;·&nbsp; Flask &nbsp;·&nbsp; HTML/CSS</div>
-        <div class="project-desc">
-          An advanced AI business intelligence tool engineered for the <strong style="color:var(--text);">Relu Consultancy Services Hackathon (Unstop)</strong>. CompanyLens automates deep intelligence gathering by running a live web scraping pipeline to extract company offerings, target audience niches, contact info, and customer insights. It routes this data through LangChain and Retrieval-Augmented Generation (RAG) to dynamically generate rich structural profiles and auto-compose highly targeted, personalized B2B outreach messaging suggestions. Fully optimized and live on Render.
-          <br><br>
-          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://companylens-ai-company-enrichment-tool-1.onrender.com/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">companylens-ai-company-enrichment-tool-1.onrender.com ↗</a></span>
-        </div>
-        <div class="project-meta">
-          <div class="project-badge">🚀 Hackathon Project</div>
-          <a href="https://github.com/mj200004/CompanyLens-AI-Company-Enrichment-Tool" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
-        </div>
-      </div>
+    </section>
 
-      <!-- Project 2: StateStack -->
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">PROJECT_02</span>
-          <a href="https://di21r9s7dmq4q.cloudfront.net/" target="_blank" class="project-title-link">StateStack — AI Learning Assistant for Bharat</a>
-        </div>
-        <div class="project-stack">JavaScript &nbsp;·&nbsp; AWS Bedrock &nbsp;·&nbsp; AWS Lambda &nbsp;·&nbsp; React &nbsp;·&nbsp; Node.js</div>
-        <div class="project-desc">
-          An intelligent learning platform designed to help students learn programming interactively. Built an AI-powered Code Debugger that detects syntax or logical errors and suggests immediate fixes alongside comprehensive contextual explanations. Created personalized learning paths integrated with custom progress tracking, interactive milestone lessons, and an advanced voice-enabled AI chat assistant built cleanly over cloud backbones.
-          <br><br>
-          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://di21r9s7dmq4q.cloudfront.net/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">di21r9s7dmq4q.cloudfront.net ↗</a></span>
-        </div>
-        <div class="project-meta">
-          <div class="project-badge">🏆 Team Lead</div>
-          <a href="#" class="project-github-btn">⌥ GitHub Link</a>
-        </div>
-      </div>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-inner">
+            <div class="section-label">// 04 — featured work</div>
+            <h2 class="section-title">Projects I've Built</h2>
+            <div class="projects-list">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-num">01</span>
+                        <a href="https://github.com/mj200004/deep-learning-flower-classification" target="_blank" class="project-title-link">17-Category Flower Species Classification</a>
+                    </div>
+                    <div class="project-stack">TensorFlow · InceptionV3 · Transfer Learning · Python</div>
+                    <div class="project-desc">
+                        Built a deep learning model classifying 17 distinct flower species using fine-tuned InceptionV3. Achieved 96% validation accuracy with custom data augmentation and hyperparameter tuning.
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-badge">96% Accuracy</span>
+                        <a href="https://github.com/mj200004/deep-learning-flower-classification" target="_blank" class="project-github-btn">GitHub ↗</a>
+                    </div>
+                </div>
 
-      <!-- Project 3: AQI Prediction -->
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">PROJECT_03</span>
-          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-title-link">AQI Prediction using RFM & Clustering</a>
-        </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Scikit-learn &nbsp;·&nbsp; Matplotlib &nbsp;·&nbsp; K-Means</div>
-        <div class="project-desc">
-          An Air Quality Index (AQI) prediction and analysis system leveraging Python, standard Machine Learning structures, and unsupervised K-Means Clustering algorithms. Performed robust data preprocessing and tailored RFM-based feature engineering workflows to systematically isolate structural patterns. Applied unsupervised learning models to partition the raw metrics, evaluate variance, and cleanly identify hidden pollution trends.
-        </div>
-        <div class="project-meta">
-          <div class="project-badge">ML Analysis</div>
-          <a href="https://github.com/mj200004/AQI-Prediction" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
-        </div>
-      </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-num">02</span>
+                        <a href="https://github.com/mj200004/Infosys_Springboard_AI_Project" target="_blank" class="project-title-link">AI Business Analyzer Platform</a>
+                    </div>
+                    <div class="project-stack">Gemini API · LangChain · Streamlit · Docker · Railway</div>
+                    <div class="project-desc">
+                        End-to-end full-stack AI tool that ingests business documents/data and generates structural insights, financial metrics summaries, and strategic recommendations using Generative AI.
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-badge">Deployed</span>
+                        <a href="https://github.com/mj200004/Infosys_Springboard_AI_Project" target="_blank" class="project-github-btn">GitHub ↗</a>
+                    </div>
+                </div>
 
-      <!-- Project 4: Image Classification -->
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">PROJECT_04</span>
-          <a href="https://github.com/mj200004/Image-Classification" target="_blank" class="project-title-link">Urban Street Flower Classification</a>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-num">03</span>
+                        <a href="https://github.com/mj200004/aqi-prediction-ml" target="_blank" class="project-title-link">AQI Analysis & Prediction System</a>
+                    </div>
+                    <div class="project-stack">Scikit-learn · K-Means · Random Forest · Pandas</div>
+                    <div class="project-desc">
+                        Analyzed ambient air quality data using unsupervised K-Means clustering to discover regional pollution patterns, followed by a Random Forest regression pipeline predicting local AQI indices.
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-badge">ML Pipeline</span>
+                        <a href="https://github.com/mj200004/aqi-prediction-ml" target="_blank" class="project-github-btn">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; Keras &nbsp;·&nbsp; InceptionV3 &nbsp;·&nbsp; ResNet50 &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Matplotlib</div>
-        <div class="project-desc">
-          A deep learning model for classifying 17 species of urban street flowers and trees, fine-tuned from a pretrained InceptionV3 network on the Kaggle Urban Street Classification dataset. Employs fine-tuning on deep feature layers layered with a custom head block (GlobalAveragePooling2D → Dense 4096 ReLU → BatchNormalization → Dense 17 Softmax) with dynamic learning-rate step downs. Achieved a <strong style="color:var(--text);">final validation accuracy of 96.05%</strong>.
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+        <div class="section-inner">
+            <div class="section-label">// 05 — accomplishments</div>
+            <h2 class="section-title">Honors & Achievements</h2>
+            <div class="achievements-list">
+                <div class="achievement-item">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-text">
+                        <strong>Hackathon Team Lead & Finalist:</strong> Led a 4-member engineering team in designing and architecting a serverless AI tutoring platform featuring real-time speech and NLP interaction at a national level hackathon.
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📜</div>
+                    <div class="achievement-text">
+                        <strong>Qualified in TCS National Qualifier Test (NQT) 2026</strong> — National Level Assessment.
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-meta">
-          <div class="project-badge">96% Accuracy</div>
-          <a href="https://github.com/mj200004/Image-Classification" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-label">// 06 — contact</div>
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted); max-width: 480px; margin: 0 auto;">
+                Open to research collaborations, AI/ML roles, and conversations around deep learning and computer vision.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:janamoupriyo@gmail.com" class="contact-link">✉ janamoupriyo@gmail.com</a>
+                <a href="https://github.com/mj200004" target="_blank" class="contact-link">🐙 github.com/mj200004</a>
+                <a href="https://www.linkedin.com/in/moupriyo-jana-11b81725b/?skipRedirect=true" target="_blank" class="contact-link">💼 linkedin.com/in/moupriyo-jana</a>
+                <a href="tel:+917865998135" class="contact-link">☎ +91 7865998135</a>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Project 5: Business Analyzer -->
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">PROJECT_05</span>
-          <a href="https://a-small-business-sales-profit-analyzer-cs6yrazrf8plm7ycsiee42.streamlit.app/" target="_blank" class="project-title-link">Business Analyzer — Sales & Profit Management System</a>
-        </div>
-        <div class="project-stack">Python &nbsp;·&nbsp; Streamlit &nbsp;·&nbsp; Docker &nbsp;·&nbsp; Railway &nbsp;·&nbsp; SQLite &nbsp;·&nbsp; Pandas &nbsp;·&nbsp; Plotly &nbsp;·&nbsp; Facebook Prophet &nbsp;·&nbsp; JWT &nbsp;·&nbsp; bcrypt</div>
-        <div class="project-desc">
-          A full-stack enterprise profiling dashboard engineered during an Infosys Springboard internship. Integrates robust underlying structures like SQLite, custom JWT tokens, role management matrices, transaction logging engines, low-stock notifications, and advanced product line scaling capabilities. Time series forecast calculations utilize Facebook Prophet models to trace future cash flows. Ported and fully isolated inside Docker environments for production hosting.
-          <br><br>
-          <span style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);">Live Demo:&nbsp;<a href="https://a-small-business-sales-profit-analyzer-cs6yrazrf8plm7ycsiee42.streamlit.app/" target="_blank" style="color:var(--accent2);text-decoration:none;font-weight:700;">streamlit.app ↗</a></span>
-        </div>
-        <div class="project-meta">
-          <div class="project-badge">Full-Stack · Deployed</div>
-          <a href="https://github.com/mj200004/Business-Analyzer" target="_blank" class="project-github-btn">⌥ View on GitHub</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
-  <div class="section-inner">
-    <div class="section-label">// 05 — achievements</div>
-    <h2 class="section-title">Key Highlights</h2>
-    <div class="achievements-list">
-      <div class="achievement-item">
-        <div class="achievement-icon">🚀</div>
-        <div class="achievement-text">Qualified Project Builder at the Relu Consultancy Services Hackathon (hosted on Unstop) — conceptualized and shipped CompanyLens under aggressive timelines.</div>
-      </div>
-      <div class="achievement-item">
-        <div class="achievement-icon">🏆</div>
-        <div class="achievement-text">Led Team StateStack at the AI for Bharat AWS Hackathon 2026 — architected a fully serverless AWS backend (Bedrock + Lambda + DynamoDB + Amplify) from concept to working, deployed prototype.</div>
-      </div>
-      <div class="achievement-item">
-        <div class="achievement-icon">📋</div>
-        <div class="achievement-text">Qualified in TCS National Qualifier Test (NQT) 2026 — National Level Assessment for Ninja Hiring Role.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="section-label">// 06 — contact</div>
-    <h2 class="section-title">Let's Connect</h2>
-    <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted); max-width: 480px; margin: 0 auto; margin-bottom: 2rem;">
-      Open to research collaborations, AI/ML roles, and conversations around deep learning and computer vision.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:janamoupriyo@gmail.com" class="contact-link">✉ janamoupriyo@gmail.com</a>
-      <a href="https://github.com/mj200004" target="_blank" class="contact-link">⌥ github.com/mj200004</a>
-      <a href="https://www.linkedin.com/in/moupriyo-jana-11b81725b/?skipRedirect=true" target="_blank" class="contact-link">in linkedin.com/in/moupriyo-jana</a>
-      <a href="tel:+917865998135" class="contact-link">☏ +91 7865998135</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Moupriyo Jana &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; Medinipore, West Bengal
-</footer>
-
+    <footer>
+        © 2026 Moupriyo Jana &nbsp;·&nbsp; AI/ML Engineer &nbsp;·&nbsp; Medinipore, West Bengal
+    </footer>
 </body>
 </html>
